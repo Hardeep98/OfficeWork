@@ -1,0 +1,320 @@
+openapi: 3.0.1
+info:
+  title: JDBI application for car organizarion
+  description: |
+    Simple Crud Operation of JDBI like Insertion Deletion and Updaion will
+    Perform and also some Batch operations
+  contact:
+    email: hardeepsinghdahion@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.0
+
+tags:
+  - name: CarMaker
+    description: operation perform
+paths:
+  /car/carMaker:
+    get:
+      tags:
+        - CarMaker
+      summary: View All Car Maker
+      description: |
+        Here we will use Some Crud Operations of dataBase Using Jdbi
+      operationId: listCarMaker
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarMaker'
+        '400':
+          description: bad input parameter
+          content: {}
+  
+    
+  /car/carMaker/addCarMaker:  
+    post:
+      tags: 
+        - CarMaker
+      summary: Adds a new CarMaker
+      operationId: addCarMaker
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarMaker"
+      responses:
+        "200":
+            description: A user object
+            content:
+              application/json:
+                schema: 
+                  $ref: "#/components/schemas/ResponseMesg"
+        "400":
+            description: bad input parameter
+            content: {}
+  /car/carMaker/findCarMaker/{id}:
+    get:
+      tags:
+        - CarMaker
+      summary: Specific car makers
+      operationId: searchCarMaker
+      parameters:
+        - name: id
+          in: path
+          description: Id of the station needs to be retrieved.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+            description: A user object
+            content:
+              application/json:
+                schema: 
+                  $ref: "#/components/schemas/CarMaker"
+        "400":
+            description: bad input parameter
+            content: {}
+        
+    delete:
+      tags:
+        - CarMaker
+      summary: Deletes Car Maker
+      operationId: deleteMaker
+      parameters:
+        - name: id
+          in: path
+          description: Delete Car Maker
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Deletion Result
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/ResponseMesg'
+        '400':
+          description: Deletion Result
+        '404':
+          description: Data not found
+          
+          
+  /car/carMaker/updateCarManifacturer/:
+    put:
+      tags:
+      - CarMaker
+      summary: Update an existing Car Maker
+      operationId: updateCarMaker
+      requestBody:
+       content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CarMaker"
+      
+      responses:
+        200:
+          description: Success mesg
+          content:
+              application/json:
+                schema: 
+                  $ref: '#/components/schemas/ResponseMesg'
+        400:
+            description: Success mesg
+        404:
+          description: Car Maker not found
+        405:
+          description: Validation exception
+  /car/carModel/addCar:
+    post:
+      tags:
+        - CarsModel
+      summary: adds Car to an inventory
+      description: Add a new Car in the model
+      operationId: addCar
+      requestBody:
+        description: Add a car
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarModel'
+        required: false
+      responses:
+        '201':
+          description: The new station was created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMesg'
+        '400':
+          description: 'invalid input, object invalid'
+          content: {}
+        '409':
+          description: an existing item already exists
+          content: {}
+      x-codegen-request-body-name: addCar
+  
+  /car/carModel/viewCars:
+     get:
+      tags:
+        - CarsModel
+      summary: View All Cars
+      description: |
+        Here we will use Some Crud Operations of dataBase Using Jdbi
+      operationId: listCars
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarModel'
+        '400':
+          description: bad input parameter
+          content: {}
+  /car/carModel/findCar/{id}:
+    get:
+      tags:
+        - CarsModel
+      summary: Serch Cars
+      operationId: searchCars
+      parameters:
+        - name: id
+          in: path
+          description: Id of the station needs to be retrieved.
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+            description: A user object
+            content:
+              application/json:
+                schema: 
+                  $ref: '#/components/schemas/CarModel'
+        "400":
+            description: bad input parameter
+           
+  /car/carModel/deleteCar/{id}:
+     delete:
+      tags:
+        - CarsModel
+      summary: Deletes Car Maker
+      operationId: deleteCarModel
+      parameters:
+        - name: id
+          in: path
+          description: Delete Car Maker
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Deletion Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMesg'
+        '400':
+          description: Deletion Result
+         
+        '404':
+          description: Data not found
+          
+          
+  /car/carModel/updateCar/:
+    put:
+      tags:
+      - CarsModel
+      summary: Update an existing Car
+      operationId: updateCar
+      requestBody:
+       content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarModel'
+      
+      responses:
+        200:
+          description: Success mesg
+          content:
+              application/json:
+                schema: 
+                  $ref: '#/components/schemas/ResponseMesg'
+        400:
+            description: Success mesg
+        404:
+          description: Car Maker not found
+        405:
+          description: Validation exception
+      
+components:
+  schemas:
+    CarModel:
+      required:
+        - id
+        - name
+        - year
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Honda
+        year:
+          type: integer
+          format: int64
+          example: 2020
+        manufacturer:
+          $ref: '#/components/schemas/CarMaker'
+    CarMaker:
+      required:
+        - id
+        - name
+        - brand
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          format: String
+          example: Hardeep singh
+        brand:
+          type: string
+          format: String
+          example: BMW
+    ResponseMesg:
+      required:
+        - id
+        - message
+        - status
+      type: object
+      properties:
+        id:
+            type: integer
+            format: Intiger
+        messege:
+            type: string
+            format: String
+        status:
+          type: boolean
+          format: Boolean type
+        
+        
