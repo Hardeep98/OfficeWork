@@ -56,9 +56,9 @@ public class CarModelDaoImpli implements CarModelDao {
 
 
 	@Override
-	public void parentCarMakerDataDeletion(Long carMakerId) {
+	public boolean parentCarMakerDataDeletion(Long carMakerId) {
 		CarsModelRepository repository = jdbi.onDemand(CarsModelRepository.class);
-		repository.deleteParentCarMakerModel(carMakerId);
+		return repository.deleteParentCarMakerModel(carMakerId);
 	}
 
 

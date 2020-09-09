@@ -1,9 +1,6 @@
 package com.niit.carManifacture.dao;
 
-import java.util.Iterator;
 import java.util.List;
-
-import org.jdbi.v3.sqlobject.customizer.Bind;
 
 import com.niit.carManifacture.model.CarMaker;
 
@@ -18,6 +15,7 @@ public interface CarMakerDao {
 
 	boolean deleteCar(Long id);
 
-	List<Long> insertBulkCarMaker( List<CarMaker> carMaker);
+	
 
 }
+       

@@ -9,13 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.niit.carManifacture.Service.CarMakerService;
-import com.niit.carManifacture.Service.ResponseService;
+import com.niit.carManifacture.ServiceImpl.CarMakerServiceImpl;
 import com.niit.carManifacture.api.CarMakerApi;
 import com.niit.carManifacture.exception.DataNotFindEXception;
 import com.niit.carManifacture.exception.UnexpectedError;
 import com.niit.carManifacture.model.CarMaker;
 import com.niit.carManifacture.model.ResponseMesg;
+import com.niit.carManifacture.utility.Utility;
 
 @RestController
 public class CarsMakerController implements CarMakerApi {
@@ -25,10 +25,9 @@ public class CarsMakerController implements CarMakerApi {
 	Long id = 0L;
 
 	@Autowired
-	CarMakerService carMakerService;
+	CarMakerServiceImpl carMakerService;
 
-	@Autowired
-	ResponseService resService;
+	
 
 	@Override
 	public ResponseEntity<List<CarMaker>> listCarMaker() {
@@ -37,6 +36,7 @@ public class CarsMakerController implements CarMakerApi {
 			return new ResponseEntity<List<CarMaker>>(carMakerList, HttpStatus.OK);
 		else
 			throw new DataNotFindEXception("There is no Data Present in the list");
+
 	}
 
 	@Override
@@ -44,21 +44,22 @@ public class CarsMakerController implements CarMakerApi {
 
 		try {
 			if (carMaker.getId() != null)
-				return new ResponseEntity<ResponseMesg>(resService.getResponse(carMakerService.insertCarMaker(carMaker),
+				return new ResponseEntity<ResponseMesg>(Utility.getResponse(carMakerService.insertCarMaker(carMaker),
 						"Car Maker Successfully", true), HttpStatus.OK);
 			else
 				throw new DataNotFindEXception("Please Provide ID");
 
 		} catch (Exception e) {
-			throw new UnexpectedError(e.getMessage());
-		}
 
+			throw new UnexpectedError("SomeUnexpected Error occuer");
+		}
 	}
 
 	@Override
 	public ResponseEntity<CarMaker> searchCarMaker(Integer id) {
 
 		CarMaker carMaker = carMakerService.getCarMaker(id.longValue());
+		System.out.println(carMaker);
 		if (carMaker != null)
 			return new ResponseEntity<CarMaker>(carMaker, HttpStatus.OK);
 		else
@@ -67,11 +68,12 @@ public class CarsMakerController implements CarMakerApi {
 
 	@Override
 	public ResponseEntity<ResponseMesg> deleteMaker(Long id) {
-
-		if (carMakerService.deleteCarMaker(id))
-			return new ResponseEntity<ResponseMesg>(resService.getResponse(id, "Car Maker successfully Deleted", true),
-					HttpStatus.OK);
-		else
+		boolean response = carMakerService.deleteCarMaker(id);
+		if (response) {
+			ResponseMesg rMesg = Utility.getResponse(id, "Car Maker successfully Deleted", true);
+			System.out.println(rMesg);
+			return new ResponseEntity<ResponseMesg>(rMesg, HttpStatus.OK);
+		} else
 			throw new DataNotFindEXception("Data not Found");
 	}
 
@@ -79,7 +81,7 @@ public class CarsMakerController implements CarMakerApi {
 	public ResponseEntity<ResponseMesg> updateCarMaker(@Valid CarMaker carMaker) {
 		if (carMakerService.updateCarMaker(carMaker))
 			return new ResponseEntity<ResponseMesg>(
-					resService.getResponse(carMaker.getId(), "Record updated Sucessfully", true), HttpStatus.OK);
+					Utility.getResponse(carMaker.getId(), "Record updated Sucessfully", true), HttpStatus.OK);
 		else
 			throw new DataNotFindEXception("Unknown Id which you are trying to make changes");
 

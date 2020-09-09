@@ -1,6 +1,5 @@
 package com.niit.carManifacture.Service;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.niit.carManifacture.model.CarMaker;
@@ -16,5 +15,5 @@ public interface CarMakerService {
 
 	boolean deleteCarMaker(Long id);
 
-	List<Long> insertBulkCarMaker(List<Integer> ids, Iterator<String> names, List<String> brands);
+	
 }

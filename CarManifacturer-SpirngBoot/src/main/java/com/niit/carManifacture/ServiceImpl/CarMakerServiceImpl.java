@@ -1,6 +1,5 @@
 package com.niit.carManifacture.ServiceImpl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,7 @@ public class CarMakerServiceImpl implements CarMakerService {
 
 	@Override
 	public CarMaker getCarMaker(Long id) {
+		
 		CarMaker carMaker = new CarMaker();
 		carMaker = carMakerDao.searchCarMaker(id);
 		return carMaker;
@@ -36,8 +36,10 @@ public class CarMakerServiceImpl implements CarMakerService {
 	public boolean deleteCarMaker(Long id) {
 		// this function perform Deletion on child table
 
-		carModelDao.parentCarMakerDataDeletion(id);
-		return carMakerDao.deleteCar(id);
+		if (carModelDao.parentCarMakerDataDeletion(id))
+			return carMakerDao.deleteCar(id);
+		else
+			return carMakerDao.deleteCar(id);
 	}
 
 	@Override
@@ -49,13 +51,5 @@ public class CarMakerServiceImpl implements CarMakerService {
 	public boolean updateCarMaker(CarMaker carMaker) {
 		return carMakerDao.updateCarMaker(carMaker);
 	}
-
-	@Override
-	public List<Long> insertBulkCarMaker(List<Integer> ids, Iterator<String> names, List<String> brands) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 
 }

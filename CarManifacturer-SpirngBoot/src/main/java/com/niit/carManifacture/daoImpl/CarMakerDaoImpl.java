@@ -14,48 +14,38 @@ import com.niit.carManifacture.repository.CarMakerRepository;
 public class CarMakerDaoImpl implements CarMakerDao {
 
 	@Autowired
-	Jdbi jdbi; 
-	
+	Jdbi jdbi;
+
 	@Override
 	public List<CarMaker> viewAllMakers() {
-		CarMakerRepository carMakerRepository=jdbi.onDemand(CarMakerRepository.class);
+		CarMakerRepository carMakerRepository = jdbi.onDemand(CarMakerRepository.class);
 		return carMakerRepository.viewAllCarMakers();
-		
+
 	}
-	
-	//Adding a new Car Maker
+
+	// Adding a new Car Maker
 	@Override
 	public Long insertCarMaker(CarMaker carMaker) {
-		CarMakerRepository carMakerRepository=jdbi.onDemand(CarMakerRepository.class);
+		CarMakerRepository carMakerRepository = jdbi.onDemand(CarMakerRepository.class);
 		return carMakerRepository.insertCarMaker(carMaker);
 	}
 
 	@Override
 	public CarMaker searchCarMaker(Long id) {
-		CarMakerRepository carMakerRepository=jdbi.onDemand(CarMakerRepository.class);
+		CarMakerRepository carMakerRepository = jdbi.onDemand(CarMakerRepository.class);
 		return carMakerRepository.searchCarMaker(id);
 	}
 
 	@Override
 	public boolean deleteCar(Long id) {
-		CarMakerRepository carMakerRepository=jdbi.onDemand(CarMakerRepository.class);
+		CarMakerRepository carMakerRepository = jdbi.onDemand(CarMakerRepository.class);
 		return carMakerRepository.deleteCar(id);
 	}
 
-
-
 	@Override
 	public boolean updateCarMaker(CarMaker carMaker) {
-		CarMakerRepository carMakerRepository=jdbi.onDemand(CarMakerRepository.class);
+		CarMakerRepository carMakerRepository = jdbi.onDemand(CarMakerRepository.class);
 		return carMakerRepository.updateCarMaker(carMaker);
 	}
 
-
-
-	@Override
-	public List<Long> insertBulkCarMaker(List<CarMaker> carMaker) {
-		// TODO Auto-generated method stub
-		return null;
-	}
- 	
 }

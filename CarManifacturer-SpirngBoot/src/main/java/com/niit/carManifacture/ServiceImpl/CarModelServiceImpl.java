@@ -17,7 +17,7 @@ public class CarModelServiceImpl implements CarModelService {
 
 	@Override
 	public List<CarModel> viewAllModels() {
-		return carModelDao.viewAllModels();
+		 return carModelDao.viewAllModels();
 
 	}
 
