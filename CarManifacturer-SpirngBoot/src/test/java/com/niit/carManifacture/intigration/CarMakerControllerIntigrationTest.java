@@ -115,24 +115,26 @@ public class CarMakerControllerIntigrationTest extends CarManifactureData {
 	public void updatedCarMakerWhenHasErrorHasInJsonFormat() throws Exception {
 
 		String inputJSON = Utility.objectToJsonConverter(getCarMakerData2());
-		inputJSON=inputJSON.substring(0, inputJSON.length()-6);
-		
+		inputJSON = inputJSON.substring(0, inputJSON.length() - 6);
+
 		RequestBuilder builder = MockMvcRequestBuilders.put("/car/carMaker/updateCarManifacturer/")
 				.contentType(MediaType.APPLICATION_JSON).content(inputJSON);
 		MvcResult mvcResult = mockMvc.perform(builder).andReturn();
 		JsonObject jsonObject = Utility.convertStringIntoJsonObject(mvcResult.getResponse().getContentAsString());
 		assertEquals(400, mvcResult.getResponse().getStatus());
-		assertEquals("Please Cheack your input Format May be there is an error with your JSON input", jsonObject.get("messege").getAsString());
+		assertEquals("Please Cheack your input Format May be there is an error with your JSON input",
+				jsonObject.get("messege").getAsString());
 
 	}
 
-	
 	@Test
 	public void findCarModel() throws Exception {
 		RequestBuilder builder = MockMvcRequestBuilders.get("/car/carMaker/findCarMaker/3")
 				.contentType(MediaType.APPLICATION_JSON);
 		MvcResult mvcResult = mockMvc.perform(builder).andReturn();
+		
 		// String result=mvcResult.getResponse().getContentAsString();
+		
 		JsonObject jsonObject = Utility.convertStringIntoJsonObject(mvcResult.getResponse().getContentAsString());
 		assertEquals(200, mvcResult.getResponse().getStatus());
 		assertEquals("3", jsonObject.get("id").getAsString());
@@ -144,7 +146,9 @@ public class CarMakerControllerIntigrationTest extends CarManifactureData {
 		RequestBuilder builder = MockMvcRequestBuilders.get("/car/carMaker/findCarMaker/3000")
 				.contentType(MediaType.APPLICATION_JSON);
 		MvcResult mvcResult = mockMvc.perform(builder).andReturn();
+		
 		// String result=mvcResult.getResponse().getContentAsString();
+		
 		JsonObject jsonObject = Utility.convertStringIntoJsonObject(mvcResult.getResponse().getContentAsString());
 		assertEquals(404, mvcResult.getResponse().getStatus());
 		assertEquals("Data not Found", jsonObject.get("messege").getAsString());
@@ -153,18 +157,16 @@ public class CarMakerControllerIntigrationTest extends CarManifactureData {
 
 	@Test
 	public void viewCarMakers() throws Exception {
-		RequestBuilder builder = MockMvcRequestBuilders.get("/car/carMaker")
-				.contentType(MediaType.APPLICATION_JSON);
+		RequestBuilder builder = MockMvcRequestBuilders.get("/car/carMaker").contentType(MediaType.APPLICATION_JSON);
 		MvcResult mvcResult = mockMvc.perform(builder).andReturn();
-		String data = mvcResult.getResponse().getContentAsString();
-		System.out.println(data);
+
+		// String data = mvcResult.getResponse().getContentAsString();
 
 		JsonArray jsonArray = Utility.convertStringIntoJsonArray(mvcResult.getResponse().getContentAsString());
-		
 
 		assertEquals(200, mvcResult.getResponse().getStatus());
 		assertEquals("4", jsonArray.get(0).getAsJsonObject().get("id").getAsString());
-		assertEquals("19", jsonArray.get(2).getAsJsonObject().get("id").getAsString());
+		assertEquals("15", jsonArray.get(2).getAsJsonObject().get("id").getAsString());
 
 	}
 }

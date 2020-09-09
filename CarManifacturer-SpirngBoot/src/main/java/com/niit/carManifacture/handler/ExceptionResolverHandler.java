@@ -21,7 +21,6 @@ import lombok.extern.java.Log;
 @Log
 public class ExceptionResolverHandler {
 
-	
 	final Logger logger = LoggerFactory.getLogger(ExceptionResolverHandler.class);
 
 	@ExceptionHandler(NotSupportedDataException.class)
@@ -30,8 +29,10 @@ public class ExceptionResolverHandler {
 		ResponseMesg rMesg = new ResponseMesg();
 		rMesg.setId(0);
 		rMesg.setMessege(ex.getMessage());
-		logger.debug("The id is  {} ",rMesg.getId());
-		log.info(ex.getMessage());
+		logger.debug("The id is  {} ", rMesg.getId());
+		logger.info(ex.getMessage());
+
+	
 		logger.info(ex.getMessage());
 		rMesg.setStatus(false);
 		return new ResponseEntity<ResponseMesg>(rMesg, HttpStatus.BAD_REQUEST);
@@ -47,11 +48,11 @@ public class ExceptionResolverHandler {
 	protected ResponseEntity<ResponseMesg> handleDataNotFind(DataNotFindEXception ex,
 			HttpServletRequest servletRequest) {
 		ResponseMesg rMesg = new ResponseMesg();
-		
+
 		rMesg.setId(0);
 		rMesg.setMessege(ex.getMessage());
-		logger.debug("The id is  {} ",rMesg.getId());
-		log.info(ex.getMessage());
+		logger.debug("The id is  {} ", rMesg.getId());
+		
 		logger.info(ex.getMessage());
 		rMesg.setStatus(false);
 		return new ResponseEntity<>(rMesg, HttpStatus.NOT_FOUND);
@@ -62,7 +63,7 @@ public class ExceptionResolverHandler {
 		ResponseMesg rMesg = new ResponseMesg();
 		rMesg.setId(0);
 		rMesg.setMessege(ex.getMessage());
-		log.info(ex.getMessage());
+		
 		rMesg.setStatus(false);
 		return new ResponseEntity<ResponseMesg>(rMesg, HttpStatus.BAD_REQUEST);
 	}
@@ -73,7 +74,7 @@ public class ExceptionResolverHandler {
 		ResponseMesg rMesg = new ResponseMesg();
 		rMesg.setId(0);
 		rMesg.setMessege("Please Cheack your input Format May be there is an error with your JSON input");
-		log.warning("Warrining MEsg ".concat(iex.getMessage()));
+		
 		rMesg.setStatus(false);
 		return new ResponseEntity<ResponseMesg>(rMesg, HttpStatus.BAD_REQUEST);
 	}
