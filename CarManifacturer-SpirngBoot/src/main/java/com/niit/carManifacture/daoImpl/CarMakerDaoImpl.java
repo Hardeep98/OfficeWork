@@ -13,6 +13,11 @@ import com.niit.carManifacture.repository.CarMakerRepository;
 @Repository
 public class CarMakerDaoImpl implements CarMakerDao {
 
+	/*
+	 * DAOs they are used to perform or interact with Data base this is the Layer
+	 * which are responsible for insertion deletion
+	 */
+	
 	@Autowired
 	Jdbi jdbi;
 

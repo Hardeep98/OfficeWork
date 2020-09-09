@@ -13,6 +13,7 @@ import com.niit.carManifacturer.mapper.CarModelMapper;
 
 public interface CarsModelRepository {
 
+	// Query with inner Join
 	@SqlQuery("SELECT cmo.model_id AS modelId , cmo.model_name  AS modelName,cmo.year_of_manifacture AS yearOfManifacture,"
 			+ "cmo.car_maker_id AS makerID, cma.id AS id, cma.name AS name ,cma.brand AS brand "
 			+ "FROM carmodel cmo , carmaker cma WHERE cma.id =cmo.car_maker_id")
@@ -27,7 +28,6 @@ public interface CarsModelRepository {
 	@SqlQuery("SELECT cmo.model_id AS modelId , cmo.model_name AS modelName,cmo.year_of_manifacture AS yearOfManifacture,cmo."
 			+ "car_maker_id AS makerID,cma.id AS id, cma.name AS name ,cma.brand AS brand from carmodel cmo , "
 			+ "carmaker cma where cmo.car_maker_id = cma.ID AND cmo.model_id = :modelId ")
-
 	@RegisterRowMapper(CarModelMapper.class)
 	public CarModel viewCarModel(@Bind("modelId") Long modelId);
 

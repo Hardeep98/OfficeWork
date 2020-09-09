@@ -78,6 +78,7 @@ public class CarModelControllerTest extends CarManifactureData {
 		when(carModelServiceImpl.deleteCar(1L)).thenReturn(true);
 		ResponseEntity<ResponseMesg> rMesg = carsModelController.deleteCarModel(1L);
 		assertEquals(HttpStatus.OK, rMesg.getStatusCode());
+		assertEquals(1,rMesg.getBody().getId());
 
 	}
 

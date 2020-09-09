@@ -22,7 +22,7 @@ public class CarManifactureData {
 		carModel1.setId(2L);
 		carModel1.setName("q5");
 		carModel1.setYear(2000L);
-		carModel1.setManufacturer(getCarMakerData());
+		carModel1.setManufacturer(getCarMakerData2());
 		return carModel1;
 
 	}
@@ -57,7 +57,7 @@ public class CarManifactureData {
 	public static CarMaker getCarMakerData() {
 		CarMaker carMaker1 = new CarMaker();
 		carMaker1.setBrand("BMW");
-		carMaker1.setId(12L);
+		carMaker1.setId(500L);
 		carMaker1.setName("DeepDahion");
 		return carMaker1;
 
@@ -75,11 +75,21 @@ public class CarManifactureData {
 	public static CarMaker getCarMakerDataWithoutID() {
 		CarMaker carMaker1 = new CarMaker();
 		carMaker1.setBrand("Camaro");
-		carMaker1.setId(15L);
+		carMaker1.setId(200L);
 		carMaker1.setName("Inder Naggu");
 		return carMaker1;
 
 	}
+	
+	public static CarMaker getCarMakerDataforAdd() {
+		CarMaker carMaker1 = new CarMaker();
+		carMaker1.setBrand("Lamborgini");
+		carMaker1.setId(97L);
+		carMaker1.setName("Inder Nagpal");
+		return carMaker1;
+
+	}
+	
 
 	
 }

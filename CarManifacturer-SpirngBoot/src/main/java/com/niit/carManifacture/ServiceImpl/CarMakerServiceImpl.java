@@ -13,8 +13,13 @@ import com.niit.carManifacture.model.CarMaker;
 @Service
 public class CarMakerServiceImpl implements CarMakerService {
 
+	/*
+	 * All the business logic comes inside the services like if we want our list to
+	 * be sorted. or want to add data with some modification
+	 */
 	@Autowired
 	CarMakerDao carMakerDao;
+	
 	@Autowired
 	CarModelDao carModelDao;
 

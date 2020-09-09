@@ -107,8 +107,10 @@ public class CarMakerControllerTest extends CarManifactureData {
 
 		when(carMakerServiceImpl.updateCarMaker(getCarMakerData())).thenReturn(true);
 		ResponseEntity<ResponseMesg> rmesg = carsMakerController.updateCarMaker(getCarMakerData());
+		
 		assertEquals(HttpStatus.OK, rmesg.getStatusCode());
 
+		assertEquals(500, rmesg.getBody().getId());
 	}
 
 	@Test
@@ -128,6 +130,7 @@ public class CarMakerControllerTest extends CarManifactureData {
 		when(carMakerServiceImpl.insertCarMaker(getCarMakerData())).thenReturn(1L);
 		ResponseEntity<ResponseMesg> rmesg = carsMakerController.addCarMaker(getCarMakerData());
 		assertEquals(HttpStatus.OK, rmesg.getStatusCode());
+		assertEquals("Car Maker Successfully",rmesg.getBody().getMessege() );
 
 	}
 
@@ -150,7 +153,8 @@ public class CarMakerControllerTest extends CarManifactureData {
 			carsMakerController.addCarMaker(new CarMaker());
 					
 		} catch (Exception e) {
-			assertEquals(e.getMessage(), carsMakerController.addCarMaker(new CarMaker()));
+			
+			assertEquals("SomeUnexpected Error occuer", e.getMessage());
 		}
 
 	}
