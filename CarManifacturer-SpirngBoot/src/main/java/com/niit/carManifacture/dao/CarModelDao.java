@@ -12,4 +12,4 @@ public interface CarModelDao {
 	boolean updateCar( Long carId , String modelName,String yearOfManifacturer,Long carMakerId);
 	boolean parentCarMakerDataDeletion(Long carMakerId);
 }
- 
+   

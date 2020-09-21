@@ -54,8 +54,7 @@ public class CarsModelController implements CarsModelApi {
 			return new ResponseEntity<CarModel>(carModel, HttpStatus.OK);
 		else
 			throw new DataNotFindEXception("ID not find");
-
-	}
+   	}
 
 	@Override
 	public ResponseEntity<ResponseMesg> deleteCarModel(Long id) {
@@ -69,8 +68,9 @@ public class CarsModelController implements CarsModelApi {
 
 	@Override
 	public ResponseEntity<ResponseMesg> updateCar(@Valid CarModel carModel) {
-		if (carModelSevice.updateCar(carModel.getId(), carModel.getName(), carModel.getYear().toString(),
-				carModel.getManufacturer().getId()))
+		boolean isUpdated = carModelSevice.updateCar(carModel.getId(), carModel.getName(),
+				carModel.getYear().toString(), carModel.getManufacturer().getId());
+		if (isUpdated)
 			return new ResponseEntity<ResponseMesg>(Utility.getResponse(carModel.getId(), "Car Updated ", true),
 					HttpStatus.OK);
 		else

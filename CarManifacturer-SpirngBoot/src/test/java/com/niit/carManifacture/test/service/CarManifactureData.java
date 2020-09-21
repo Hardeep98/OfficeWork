@@ -38,7 +38,7 @@ public class CarManifactureData {
 	
 	public static CarModel actualDataUpdate() {
 		CarModel carModel1 = new CarModel();
-		carModel1.setId(21L);
+		carModel1.setId(4L);
 		carModel1.setName("Mercedes");
 		carModel1.setYear(2020L);
 		carModel1.setManufacturer( actualCarMakerData());
@@ -49,7 +49,7 @@ public class CarManifactureData {
 	public static CarMaker actualCarMakerData() {
 		CarMaker carMaker1 = new CarMaker();
 		carMaker1.setBrand("BMW");
-		carMaker1.setId(3L);
+		carMaker1.setId(4L);
 		carMaker1.setName("DeepDahion");
 		return carMaker1;
 	}
@@ -75,7 +75,7 @@ public class CarManifactureData {
 	public static CarMaker getCarMakerDataWithoutID() {
 		CarMaker carMaker1 = new CarMaker();
 		carMaker1.setBrand("Camaro");
-		carMaker1.setId(200L);
+		carMaker1.setId(20L);
 		carMaker1.setName("Inder Naggu");
 		return carMaker1;
 

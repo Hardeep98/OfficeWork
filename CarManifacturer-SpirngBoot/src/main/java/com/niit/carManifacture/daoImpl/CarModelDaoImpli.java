@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.carManifacture.dao.CarModelDao;
+import com.niit.carManifacture.exception.UnexpectedError;
 import com.niit.carManifacture.model.CarModel;
 import com.niit.carManifacture.repository.CarsModelRepository;
 
@@ -50,8 +51,12 @@ public class CarModelDaoImpli implements CarModelDao {
 	@Override
 	public boolean updateCar(Long carId, String modelName, String yearOfManifacturer, Long carMakerId) {
 		CarsModelRepository repository = jdbi.onDemand(CarsModelRepository.class);
-		return repository.updateCarModel(carId, modelName, yearOfManifacturer, carMakerId);
-		
+		try { 
+			return repository.updateCarModel(carId, modelName, yearOfManifacturer, carMakerId);
+			
+		}catch (Exception e) {
+			throw new UnexpectedError("Unexpected Error May be Error with foreign key constrain");
+		}
 	}
 
 

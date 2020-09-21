@@ -1,19 +1,19 @@
 package com.niit.carManifacture.ServiceImpl;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.niit.carManifacture.Service.CarModelService;
-import com.niit.carManifacture.dao.CarModelDao;
+import com.niit.carManifacture.daoImpl.CarModelDaoImpli;
 import com.niit.carManifacture.model.CarModel;
 
 @Service
 public class CarModelServiceImpl implements CarModelService {
 
 	@Autowired
-	CarModelDao carModelDao;
+	CarModelDaoImpli carModelDao;
 
 	@Override
 	public List<CarModel> viewAllModels() {

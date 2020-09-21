@@ -18,6 +18,7 @@ public class PresistenceConfiguration {
 		TransactionAwareDataSourceProxy awareDataSourceProxy = new TransactionAwareDataSourceProxy(dataSource);
 		Jdbi jdbi = Jdbi.create(awareDataSourceProxy);
 		jdbi.installPlugin(new SqlObjectPlugin());
+		
 		return jdbi;
 	}
 

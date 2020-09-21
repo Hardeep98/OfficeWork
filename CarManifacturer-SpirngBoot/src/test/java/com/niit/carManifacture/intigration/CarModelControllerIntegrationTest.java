@@ -39,7 +39,7 @@ public class CarModelControllerIntegrationTest extends CarManifactureData {
 	@Test
 	public void deleteCarModel() throws Exception {
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/car/carModel/deleteCar/23")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/car/carModel/deleteCar/1")
 				.contentType(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 //		String data = result.getResponse().getContentAsString();
@@ -132,14 +132,14 @@ public class CarModelControllerIntegrationTest extends CarManifactureData {
 
 	@Test
 	public void findCarModel() throws Exception {
-		RequestBuilder builder = MockMvcRequestBuilders.get("/car/carModel/findCar/24")
+		RequestBuilder builder = MockMvcRequestBuilders.get("/car/carModel/findCar/4")
 				.contentType(MediaType.APPLICATION_JSON);
 		MvcResult mvcResult = mockMvc.perform(builder).andReturn();
 
 		JsonObject jsonObject = Utility.convertStringIntoJsonObject(mvcResult.getResponse().getContentAsString());
 		assertEquals(200, mvcResult.getResponse().getStatus());
-		assertEquals("24", jsonObject.get("id").getAsString());
-		assertEquals("c300", jsonObject.get("name").getAsString());
+		assertEquals("4", jsonObject.get("id").getAsString());
+		assertEquals("PPs", jsonObject.get("name").getAsString());
 	}
 
 	@Test
@@ -166,11 +166,11 @@ public class CarModelControllerIntegrationTest extends CarManifactureData {
 		System.out.println(data);
 
 		JsonArray jsonArray = Utility.convertStringIntoJsonArray(mvcResult.getResponse().getContentAsString());
-		System.out.println(jsonArray.get(0).getAsJsonObject().getAsJsonObject("manufacturer"));
+		System.out.println("Data is" + jsonArray.get(0).getAsJsonObject().getAsJsonObject("manufacturer"));
 
 		assertEquals(200, mvcResult.getResponse().getStatus());
-		assertEquals("35", jsonArray.get(2).getAsJsonObject().get("id").getAsString());
-		assertEquals("39", jsonArray.get(4).getAsJsonObject().get("id").getAsString());
+		assertEquals("4", jsonArray.get(2).getAsJsonObject().get("id").getAsString());
+		assertEquals("2", jsonArray.get(0).getAsJsonObject().get("id").getAsString());
 
 	}
 }

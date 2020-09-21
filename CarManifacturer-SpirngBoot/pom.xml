@@ -13,7 +13,8 @@
 	<artifactId>JDBI-data-source</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CarManifacturer-SpirngBoot</name>
-	<description>trying to connect using jdbi with data base and usingYML file For rest Services</description>
+	<description>trying to connect using jdbi with data base and usingYML
+		file For rest Services</description>
 
 	<properties>
 		<swagger-annotations.version>1.5.21</swagger-annotations.version>
@@ -95,6 +96,11 @@
 			<version>3.9.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.200</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.jdbi/jdbi3-postgres -->
 		<dependency>
 			<groupId>org.jdbi</groupId>

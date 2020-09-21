@@ -13,6 +13,13 @@ import com.niit.carManifacturer.mapper.CarModelMapper;
 
 public interface CarsModelRepository {
 
+	@SqlUpdate("Create Table carMode(model_id INT GENERATED ALWAYS AS IDENTITY,"
+			+ "model_name VARCHAR(50) Not NULL,year_of_makifacture varchar(50),"
+			+ "car_maker_id INT,PRIMARY KEY(model_id),"
+			+ "CONSTRAINT fk_customer FOREIGN KEY(car_maker_id) REFERENCES carmaker(id))")
+	public void createTable();
+	
+	
 	// Query with inner Join
 	@SqlQuery("SELECT cmo.model_id AS modelId , cmo.model_name  AS modelName,cmo.year_of_manifacture AS yearOfManifacture,"
 			+ "cmo.car_maker_id AS makerID, cma.id AS id, cma.name AS name ,cma.brand AS brand "
