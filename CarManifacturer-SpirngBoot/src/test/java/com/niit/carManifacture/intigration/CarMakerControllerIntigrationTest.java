@@ -22,6 +22,7 @@ import com.google.gson.JsonObject;
 import com.niit.carManifacture.test.service.CarManifactureData;
 import com.niit.carManifacture.util.Utility;
 
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
@@ -39,7 +40,7 @@ public class CarMakerControllerIntigrationTest extends CarManifactureData {
 	@Test
 	public void deleteCarMaker() throws Exception {
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/car/carMaker/findCarMaker/3")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/car/carMaker/deleteCarMaker/3")
 				.contentType(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		String data = result.getResponse().getContentAsString();
@@ -53,7 +54,7 @@ public class CarMakerControllerIntigrationTest extends CarManifactureData {
 	@Test
 	public void deleteCarMakerWhenIdNotPresent() throws Exception {
 
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/car/carMaker/findCarMaker/888")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/car/carMaker/deleteCarMaker/888")
 				.contentType(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		String data = result.getResponse().getContentAsString();

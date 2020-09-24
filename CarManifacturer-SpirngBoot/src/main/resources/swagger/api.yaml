@@ -81,7 +81,7 @@ paths:
         "400":
             description: bad input parameter
             content: {}
-        
+  /car/carMaker/deleteCarMaker/{id}:  
     delete:
       tags:
         - CarMaker

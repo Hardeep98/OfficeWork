@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
 @EnableAutoConfiguration
 @Configuration
-public class PresistenceConfiguration {
+public class PresistenceConfiguation {
 
 	@Bean
 	public Jdbi jdbi(DataSource dataSource) {
